@@ -21,9 +21,17 @@ You models will then feed an instance of the service class when a `query()` invo
 
 In this example we will create a Strata Model named 'Rates' that connects to an external MySQL database using a custom service.
 
-First start by creating a file under `~/src/Model/Service/` named `RatesService.php`.
 
-The file should contain connection information as well optional pre-formatted queries. It also has the mandate of returning `RateEntity` elements upon each queries' `fetch()`.
+First, create a new `Rate` Model using Strata's `generate` command.
+
+~~~ bash
+$ ./strata generate model rate
+~~~
+
+
+Then manually create a new connection service class under `~/src/Model/Service/` named `RatesService.php`.
+
+The file should contain connection information as well optional pre-formatted queries. It also has the job of returning `RateEntity` elements upon each queries' `fetch()`.
 
 ~~~ php
 <?php
@@ -53,7 +61,7 @@ class RatesService extends MysqlConnector {
         return $formatted;
     }
 
-    public function getByLocationCode($locationCode)
+    public function findByLocationCode($locationCode)
     {
         return $this
             ->select("r.*")
@@ -63,7 +71,7 @@ class RatesService extends MysqlConnector {
             ->fetch();
     }
 
-    public function getWithCategories()
+    public function findWithCategories()
     {
         return $this
             ->select("r.*")
@@ -72,13 +80,6 @@ class RatesService extends MysqlConnector {
             ->fetch();
     }
 }
-~~~
-
-
-Secondly, create a new `Rate` Model using Strata's `generate` command.
-
-~~~ bash
-$ ./strata generate model rate
 ~~~
 
 
