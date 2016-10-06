@@ -1,0 +1,17 @@
+
+{
+    "name": "francoisfaubert/strata-external-db-connector",
+    "description": "A MySQL database connector for Strata that works with databases other than the one hosting the Wordpress installation.",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Francois Faubert",
+            "email": "frank@francoisfaubert.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Francoisfaubert\\Service\\Db\\Connector\\": "src"
+        }
+    }
+}
