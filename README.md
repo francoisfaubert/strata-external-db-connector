@@ -8,7 +8,7 @@ connect to other MySQL databases than the one hosting the Wordpress installation
 Require the dependency through Composer :
 
 ~~~
-$ composer require francoisfaubert/strata-external-db-connector
+$ composer require "francoisfaubert/strata-external-db-connector:*"
 ~~~
 
 ## Implementation
