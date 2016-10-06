@@ -56,7 +56,7 @@ class RatesService extends MysqlConnector {
     public function getByLocationCode($locationCode)
     {
         return $this
-            ->select("rates.*")
+            ->select("r.*")
             ->from("rates", "r")
             ->where("r.location = ?", (int)$locationCode)
             ->orderBy("r.name", "ASC")
@@ -66,7 +66,7 @@ class RatesService extends MysqlConnector {
     public function getWithCategories()
     {
         return $this
-            ->select("rates.*")
+            ->select("r.*")
             ->from("rates", "r")
             ->join("locations", "locations.ID = r.location_ID")
             ->fetch();
