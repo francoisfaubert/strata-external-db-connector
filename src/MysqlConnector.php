@@ -148,7 +148,7 @@ abstract class MysqlConnector
             }
 
             $args = count($valuesSet) ? " using: :" . var_export($valuesSet, true) : "";
-            Strata::app()->log($statement->queryString . $args, "<magenta>Amerispa:RemoteQuery</magenta>");
+            Strata::app()->log($statement->queryString . $args, "<magenta>MysqlConnector</magenta>");
 
             return (bool)$statement->execute();
 
@@ -197,7 +197,7 @@ abstract class MysqlConnector
             }
 
             $args = count($valuesSet) ? " using: :" . var_export($valuesSet, true) : "";
-            Strata::app()->log($statement->queryString . $args, "<magenta>Amerispa:RemoteQuery</magenta>");
+            Strata::app()->log($statement->queryString . $args, "<magenta>MysqlConnector</magenta>");
 
             return $statement->execute() > 0;
 
@@ -213,7 +213,7 @@ abstract class MysqlConnector
         $statement = $this->connector->prepare($this->buildSelectQuery());
 
         $args = count($this->preparedData) ? " using: " . implode(", ", $this->preparedData) : "";
-        Strata::app()->log($statement->queryString . $args, "<magenta>Amerispa:RemoteQuery</magenta>");
+        Strata::app()->log($statement->queryString . $args, "<magenta>MysqlConnector</magenta>");
 
         if (count($this->preparedData)) {
             $statement->execute($this->preparedData);
