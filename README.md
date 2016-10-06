@@ -55,8 +55,8 @@ class RatesService extends MysqlConnector {
     {
         $formatted = array();
 
-        foreach ((array)parent::fetch() as $treatment) {
-            $formatted[] = Rate::getEntity((object)$treatment);
+        foreach (parent::fetch() as $row) {
+            $formatted[] = Rate::getEntity((object)$row);
         }
 
         return $formatted;

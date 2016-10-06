@@ -40,6 +40,7 @@ abstract class MysqlConnector
             } else {
                 $connectionStr = sprintf("mysql:host=%s;dbname=%s", $this->servername, $this->dbname);
             }
+
             $this->connector = new PDO($connectionStr, $this->username, $this->password);
             $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
@@ -82,6 +83,8 @@ abstract class MysqlConnector
     {
         try {
             $this->connect();
+
+            debug($this->makeSelectStatement());
             return $this->makeSelectStatement()->fetchAll();
         } catch (PDOException $e) {
             throw new Exception($e->getMessage());
@@ -214,10 +217,7 @@ abstract class MysqlConnector
 
         $args = count($this->preparedData) ? " using: " . implode(", ", $this->preparedData) : "";
         Strata::app()->log($statement->queryString . $args, "<magenta>MysqlConnector</magenta>");
-
-        if (count($this->preparedData)) {
-            $statement->execute($this->preparedData);
-        }
+        $statement->execute(count($this->preparedData) ? $this->preparedData : null);
 
         return $statement;
     }
