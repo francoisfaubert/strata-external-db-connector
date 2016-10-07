@@ -83,8 +83,6 @@ abstract class MysqlConnector
     {
         try {
             $this->connect();
-
-            debug($this->makeSelectStatement());
             return $this->makeSelectStatement()->fetchAll();
         } catch (PDOException $e) {
             throw new Exception($e->getMessage());
